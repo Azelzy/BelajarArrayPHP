@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contoh Dasar PHP</title>
-    <link rel="shortcut icon" href="febri.jpg">
+    <link rel="shortcut icon" href="gambar/yuzu.ico">
+    <link rel="stylesheet" href="style.css">
+    
     
 </head>
 <body>

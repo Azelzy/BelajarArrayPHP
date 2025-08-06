@@ -11,57 +11,9 @@
     <?php
     $no = 1;                                     // Inisialisasi nomor untuk tabel
     include 'functions.php';                     // Pastikan file functions.php sudah ada
-    $data = select("SELECT * FROM tb_siswa");    // Ambil data siswa dari database
-    print_r($data);                              // Debugging: tampilkan data yang diambil
-    ?>
-
-<!-- Data Array -->
-<?php
-$array = ["ajuka", 14, true];
-$dataSiswa = [
-    [
-        "nama" => "Azuka",
-        "asal" => "Indonesia",
-        "kelas" => "11 PPLG 1",
-        "umur" => 14
-    ],
-    [
-        "nama" => "Budi",
-        "asal" => "Indonesia",
-        "kelas" => "11 PPLG 1",
-        "umur" => 15
-    ],
-    [
-        "nama" => "Cici",
-        "asal" => "Indonesia",
-        "kelas" => "11 PPLG 1",
-        "umur" => 16
-    ],
-    [
-        "nama" => "Dodi",
-        "asal" => "Indonesia",
-        "kelas" => "11 PPLG 1",
-        "umur" => 17
-    ],
-    [
-        "nama" => "Eka",
-        "asal" => "Indonesia",
-        "kelas" => "11 PPLG 1",
-        "umur" => 18
-    ]
-];
+    $data = select("SELECT * FROM tb_siswa");    // Ambil data siswa dari database                  // Pastikan file functions.php sudah ada
+    $ersop = select("SELECT * FROM tb_unit");    // Ambil data siswa dari database
 ?>
-
-<h1>Data Array SISWA</h1>
-<p>
-    <?= $dataSiswa[0]["nama"]; ?>
-    mempunyai teman bernama <?= $dataSiswa[1]["nama"]; ?>.<br>
-    yang berasal dari <?= $dataSiswa[1]["asal"]; ?>.<br>
-    Mereka berdua berada di kelas <?= $dataSiswa[0]["kelas"]; ?>.<br>
-    Umur <?= $dataSiswa[0]["nama"]; ?> adalah <?= $dataSiswa[0]["umur"]; ?> tahun.<br>
-    dan umur <?= $dataSiswa[1]["nama"]; ?> adalah <?= $dataSiswa[1]["umur"]; ?> tahun.<br>
-    sedangkan teman lainnya adalah <?= $dataSiswa[2]["nama"]; ?>, <?= $dataSiswa[3]["nama"]; ?>, dan <?= $dataSiswa[4]["nama"]; ?>.
-</p>
 
 <h2>Data Siswa kelas 11 PPLG 1</h2>
 <table border=1>
@@ -69,95 +21,47 @@ $dataSiswa = [
         <th>No</th>
         <th>Nama</th>
         <th>Asal</th>
-        <th>Kelas</th>
-        <th>Umur</th>
+        <th>Foto</th>
     </tr>
-    <?php 
-    $no = 1; // Reset nomor untuk tabel siswa
-    foreach ($dataSiswa as $siswa): 
+
+<?php 
+    foreach ($data as $siswa): 
     ?>
     <tr>
         <td><?= $no++; ?></td>
-        <td><?= $siswa['nama'] ?></td>
-        <td><?= $siswa['asal'] ?></td>
-        <td><?= $siswa['kelas'] ?></td>
-        <td><?= $siswa['umur'] ?> tahun</td>
+        <td><?= $siswa["nama"] ?></td>
+        <td><?= $siswa["asal"] ?></td>
+        <td><img src="gambar/<?= $siswa["foto"] ?>" alt="<?= $siswa["nama"] ?>" width="100"></td>
     </tr>
-    <?php endforeach; ?>    
+<?php endforeach; ?>    
 </table>
 
-<h3>Data Siswa dalam format List</h3>
-<?php
-foreach ($dataSiswa as $siswa) {
-?>
-<ul>
-    <li>Nama: <?= $siswa['nama'] ?></li>
-    <li>Asal: <?= $siswa['asal'] ?></li>
-    <li>Kelas: <?= $siswa['kelas'] ?></li>
-    <li>Umur: <?= $siswa['umur'] ?> tahun</li>
-</ul>
-<?php
-}
-?>
-
-<!-- Data unit spring -->
-<?php
-$dataUnit = [
-    [
-        "nama" => "g17",
-        "FPS" => "150 FPS",
-        "kapasitas" => "26 BB",
-        "gambar" => "gambar/g17.png"
-    ],
-    [
-        "nama" => "m1911",
-        "FPS" => "150 FPS",
-        "kapasitas" => "26 BB",
-        "gambar" => "gambar/m1911.png"
-    ],
-    [
-        "nama" => "p226",
-        "FPS" => "150 FPS",
-        "kapasitas" => "26 BB",
-        "gambar" => "gambar/p226.png"
-    ],
-    [
-        "nama" => "mnp",
-        "FPS" => "150 FPS",
-        "kapasitas" => "26 BB",
-        "gambar" => "gambar/mnp.png"
-    ],
-    [
-        "nama" => "beretta",
-        "FPS" => "150 FPS",
-        "kapasitas" => "26 BB",
-        "gambar" => "gambar/bereta.png"
-    ]
-];
-?>
-
 <h2>Data Unit Spring</h2>
-<table border=1>
+<!-- Data unit spring -->
+<table border="1">
     <tr>
         <th>No</th>
         <th>Nama Unit</th>
         <th>Kekuatan Spring</th>
         <th>Kapasitas BB</th>
-        <th>Gambar</th>
+        <th>Foto</th>
     </tr>
-    <?php 
-    $no = 1; // Reset nomor untuk tabel unit spring
-    foreach ($dataUnit as $unit): 
-    ?>
+
+<?php 
+$no = 1;
+foreach ($ersop as $unit): 
+?>
     <tr>
         <td><?= $no++; ?></td>
-        <td><?= ucfirst($unit['nama']) ?></td>
-        <td><?= $unit['FPS'] ?></td>
-        <td><?= $unit['kapasitas'] ?></td>
-        <td><img src="<?= $unit['gambar'] ?>" alt="<?= $unit['nama'] ?>" width="100"></td>
+        <td><?= $unit["nama"] ?></td>
+        <td><?= $unit["kekuatan_spring"] ?></td>
+        <td><?= $unit["kapasitas_BB"] ?></td>
+        <td><img src="gambar/<?= $unit["foto"] ?>" alt="<?= $unit["nama"] ?>" width="100"></td>
     </tr>
-    <?php endforeach; ?>
+<?php endforeach; ?>    
 </table>
+
+
 
 <!-- Statement If-Else Waktu -->
 <?php
@@ -265,3 +169,14 @@ $hobi = "mancing, main game, tidur, nonton anime, olahraga, belajar, berkumpul d
 
 </body>
 </html>
+
+<!-- <h1>Data Array SISWA</h1>
+<p>
+    <?= $dataSiswa[0]["nama"]; ?>
+    mempunyai teman bernama <?= $dataSiswa[1]["nama"]; ?>.<br>
+    yang berasal dari <?= $dataSiswa[1]["asal"]; ?>.<br>
+    Mereka berdua berada di kelas <?= $dataSiswa[0]["kelas"]; ?>.<br>
+    Umur <?= $dataSiswa[0]["nama"]; ?> adalah <?= $dataSiswa[0]["umur"]; ?> tahun.<br>
+    dan umur <?= $dataSiswa[1]["nama"]; ?> adalah <?= $dataSiswa[1]["umur"]; ?> tahun.<br>
+    sedangkan teman lainnya adalah <?= $dataSiswa[2]["nama"]; ?>, <?= $dataSiswa[3]["nama"]; ?>, dan <?= $dataSiswa[4]["nama"]; ?>.
+</p> -->

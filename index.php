@@ -8,6 +8,12 @@
     
 </head>
 <body>
+    <?php
+    $no = 1;                                     // Inisialisasi nomor untuk tabel
+    include 'functions.php';                     // Pastikan file functions.php sudah ada
+    $data = select("SELECT * FROM tb_siswa");    // Ambil data siswa dari database
+    print_r($data);                              // Debugging: tampilkan data yang diambil
+    ?>
 
 <!-- Data Array -->
 <?php

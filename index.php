@@ -13,7 +13,7 @@
     <?php
     $no = 1;                                     // Inisialisasi nomor untuk tabel
     include 'functions.php';                     // Pastikan file functions.php sudah ada
-    $data = select("SELECT * FROM tb_siswa");    // Ambil data siswa dari database                  // Pastikan file functions.php sudah ada
+    $data = select("SELECT * FROM tb_siswa");    // Ambil data siswa dari database                
     $ersop = select("SELECT * FROM tb_unit");    // Ambil data siswa dari database
 ?>
 
